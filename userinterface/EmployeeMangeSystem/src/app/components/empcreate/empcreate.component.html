@@ -1,0 +1,45 @@
+<div class="container mt-4">
+  <h2 class="text-primary mb-3">Create New Employee</h2>
+
+  <form #form="ngForm" (ngSubmit)="createEmployee()">
+    <div class="mb-3">
+      <label>First Name</label>
+      <input [(ngModel)]="employee.firstName" name="firstName" minlength="2" class="form-control" minlength="2" required
+        #firstName="ngModel" required>
+      <div *ngIf="firstName.invalid && firstName.touched" class="text-danger">
+        <small *ngIf="firstName.hasError('required')">First name is required.</small>
+        <small *ngIf="firstName.hasError('minlength')">First name must be at least 2 characters</small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label>Last Name</label>
+      <input [(ngModel)]="employee.lastName" #lastname="ngModel" name="lastName" minlength="2" [minlength]="2" required
+        class="form-control">
+      <div *ngIf="lastname.invalid && lastname.touched" class="text-danger">
+        <small *ngIf="lastname.hasError('required')">Last name is required.</small>
+        <small *ngIf="lastname.hasError('minlength')">Last name must be at least 2 characters</small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label>Email</label>
+      <input [(ngModel)]="employee.email" name="email" type="email" class="form-control" #email="ngModel" required>
+      <div *ngIf="email.invalid && email.touched" class="text-danger">
+        <small *ngIf="email.hasError('required')">required</small>
+        <small *ngIf="email.hasError('email')">Invalid email format</small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label>Position</label>
+      <input [(ngModel)]="employee.position" #position="ngModel" name="position" class="form-control" required>
+      <div *ngIf="position.invalid && position.touched" class="text-danger">
+        <small *ngIf="position.hasError('required')">required</small>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Create</button>
+    <button type="button" class="btn btn-secondary ms-2" (click)="router.navigate(['/'])">Cancel</button>
+  </form>
+</div>

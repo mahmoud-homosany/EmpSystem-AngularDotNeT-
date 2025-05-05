@@ -1,0 +1,42 @@
+<div class="mt-4">
+  <h1 class="text-center text-primary mb-4"
+    style="font-size: 50;font-weight: 9000;font-family:'Times New Roman', Times, serif;">
+    Employees List </h1>
+  <div class="text-start mb-3">
+    <a routerLink="/create" class="btn btn-primary m-1">Add Employee</a>
+
+
+  </div>
+  <div class="mb-3 m-1">
+    <input type="text" class="form-control" placeholder="Search by First Name" [(ngModel)]="searchName"
+      (input)="onSearch()" />
+  </div>
+
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark text-center">
+      <tr>
+        <th>#ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>E_Mail</th>
+        <th>Position</th>
+        <th>Crud</th>
+
+      </tr>
+    </thead>
+    <tbody class=" text-center">
+      <tr *ngFor="let emp of employees; let i = index">
+        <td>{{ emp.id}}</td>
+        <td>{{ emp.firstName }}</td>
+        <td>{{ emp.lastName }}</td>
+        <td>{{ emp.email }}</td>
+        <td>{{ emp.position }}</td>
+        <td>
+
+          <button class="btn btn-sm btn-info me-2" [routerLink]="['/update', emp.id]">Update</button>
+          <button class="btn btn-sm btn-danger" (click)="deleteEmployee(emp.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

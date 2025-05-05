@@ -1,0 +1,44 @@
+<div class="container mt-4" *ngIf="employee">
+  <h2 class="text-info mb-3">Update Employee</h2>
+  <form #form="ngForm" (ngSubmit)="updateEmployee()">
+    <div class="mb-3">
+      <label>First Name</label>
+      <input [(ngModel)]="employee.firstName" #firstName="ngModel" name="firstNamef" minlength="2" class="form-control"
+        required>
+      <div *ngIf="firstName.invalid && firstName.touched" class="text-danger">
+        <small *ngIf="firstName.hasError('required')">First name is required.</small>
+        <small *ngIf="firstName.hasError('minlength')">First name must be at least 2 characters</small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="lastName">Last Name</label>
+      <input [(ngModel)]="employee.lastName" #lastname="ngModel" name="lastNamef" minlength="2" class="form-control"
+        required>
+      <div *ngIf="lastname.invalid && lastname.touched" class="text-danger">
+        <small *ngIf="lastname.hasError('required')">Last name is required.</small>
+        <small *ngIf="lastname.hasError('minlength')">Last name must be at least 2 characters</small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label>Email</label>
+      <input [(ngModel)]="employee.email" #email="ngModel" name="email" type="emailf" class="form-control" required>
+      <div *ngIf="email.invalid && email.touched" class="text-danger">
+        <small *ngIf="email.hasError('required')">required</small>
+        <small *ngIf="email.hasError('email')">Invalid email format</small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label>Position</label>
+      <input [(ngModel)]="employee.position" #position="ngModel" name="positionf" class="form-control" required>
+      <div *ngIf="position.invalid && position.touched" class="text-danger">
+        <small *ngIf="position.hasError('required')">required</small>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-info" [disabled]="form.invalid">Update</button>
+    <button type="button" class="btn btn-secondary ms-2" [routerLink]="['/']">Cancel</button>
+  </form>
+</div>
